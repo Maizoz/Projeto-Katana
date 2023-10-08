@@ -1,28 +1,44 @@
+//onpen and close menu 
 const nav = document.querySelector('#header nav');
 const toggle = document.querySelectorAll('nav .toggle');
 const paragraphJustify = document.querySelector('nav .icon-paragraph-justify');
 const crossIcon = document.querySelector('nav .icon-cross');
+const menu = document.querySelector('nav .menu');
+
+// Função para abrir ou fechar o menu
+for (const element of toggle) {
+    element.addEventListener('click', function () {
+        nav.classList.toggle('show')
+    
+    if (nav.classList.contains('show')) {
+        crossIcon.style.visibility = 'visible';
+        crossIcon.style.opacity = '1';
+    } else {
+        crossIcon.style.visibility = 'hidden';
+        crossIcon.style.opacity = '0';
+    }
+})}
+
+
+paragraphJustify.addEventListener('click', function (event) {
+    event.preventDefault(); 
+    toggleMenu();
+});
+
 
 for (const element of toggle) {
     element.addEventListener('click', function () {
-        nav.classList.toggle('show');
-        
-    
-        if (nav.classList.contains('show')) {
-          
-            crossIcon.style.visibility = 'visible';
-            crossIcon.style.opacity = '1';
-        } else {
-          
-            crossIcon.style.visibility = 'hidden';
-            crossIcon.style.opacity = '0';
-        }
+        toggleMenu();
     });
 }
 
 
-paragraphJustify.addEventListener('click', function () {
- 
-    crossIcon.style.visibility = 'visible';
-    crossIcon.style.opacity = '1';
-});
+const menuItems = menu.querySelectorAll('a');
+for (const menuItem of menuItems) {
+    menuItem.addEventListener('click', function () {
+        nav.classList.remove('show');
+        crossIcon.style.visibility = 'hidden';
+        crossIcon.style.opacity = '0';
+    });
+}
+
